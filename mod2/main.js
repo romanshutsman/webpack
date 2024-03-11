@@ -1,4 +1,4 @@
-const {add, addAndMultiply, subtract} = require('./functions')
+import add from './functions/add'
 
-add(1,2)
-console.log(addAndMultiply(1,2,3))
+// add(1,2)
+console.log(add(1,2))
