@@ -1,6 +1,7 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const copyPlygin = require('copy-webpack-plugin');
+const bundleAnalyze = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
     entry: {
         index: './src/index.js',
@@ -33,8 +34,14 @@ module.exports = {
                     context: 'src'
                 }
             ]
-        })
+        }),
+         new bundleAnalyze({})
     ],
+    optimization: {
+        splitChunks: {
+            chunks: "all"
+        }
+    },
     devServer: {
         static:'./dist'
     },
