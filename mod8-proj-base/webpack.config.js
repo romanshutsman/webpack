@@ -1,5 +1,6 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin')
+const copyPlygin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         index: './src/index.js',
@@ -21,7 +22,17 @@ module.exports = {
             template: path.resolve(__dirname, 'src/pages/courses.html'),
             chunks: ['courses'],
             inject: true,
-            filename: 'pages/courses.html'
+            filename: 'courses.html'
+        }),
+        new copyPlygin({
+            patterns: [
+                {
+                    // from: path.resolve(__dirname, 'src/assets/*.png'),//copy all png
+                    from: path.resolve(__dirname, 'src/assets/images/*'),//copy all files
+                    to: path.resolve(__dirname, 'dist'),
+                    context: 'src'
+                }
+            ]
         })
     ],
     devServer: {
