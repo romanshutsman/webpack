@@ -4,6 +4,12 @@ const CopyPlugin = require("copy-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const miniCss = require("mini-css-extract-plugin");
 const webpack = require("webpack");
+const purgeCss = require("purgecss-webpack-plugin");
+const glob = require("glob");
+
+const purgePath = {
+  src: path.join(__dirname, 'src')
+}
 
 module.exports = {
   entry: {
@@ -60,6 +66,10 @@ module.exports = {
     }),
     // new BundleAnalyzerPlugin({}),
     new miniCss(),
+      new purgeCss({
+        paths: glob.sync(`${purgePath.src}/**/*`, {nodir: true}),
+        // safelist: ['dummy-css']
+      })
   ],
   optimization: {
     splitChunks: {
