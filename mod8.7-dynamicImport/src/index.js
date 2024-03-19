@@ -9,7 +9,8 @@ import toastr from "toastr";
 
 import "./index.css";
 import "./_vendor.scss";
-
+import {showDate} from './libs/showDate';
+showDate()
 const footerCol1Items = ["Home", "About", "Contact us", "FAQ", "Blog"];
 const footerCol2Items = ["Flutter", "Javascript", "Java", "Nodejs", "Python"];
 const footerCol3Items = ["Home", "Feature", "Pricing", "FAQ", "About"];
